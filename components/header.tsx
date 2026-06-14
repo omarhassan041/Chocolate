@@ -23,9 +23,9 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
-              <span className="font-serif text-primary-foreground text-xl font-bold">S</span>
+            <span className="text-xl">🍫</span>
             </div>
-            <span className="font-serif text-xl font-bold text-foreground">Sweet Delights</span>
+            <span className="font-serif text-xl font-bold text-foreground">Sweet Velvora</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,0 +1,32 @@
+{
+  "app": {
+    "[project]/Projects/Chocolate-website/app/(main)/cart/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    ],
+    "[project]/Projects/Chocolate-website/app/(main)/delivery/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    ],
+    "[project]/Projects/Chocolate-website/app/(main)/products/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    ],
+    "[project]/Projects/Chocolate-website/app/admin/dashboard/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    ],
+    "[project]/Projects/Chocolate-website/app/admin/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

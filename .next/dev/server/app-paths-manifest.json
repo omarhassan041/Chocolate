@@ -1,0 +1,9 @@
+{
+  "/(main)/cart/page": "app/(main)/cart/page.js",
+  "/(main)/delivery/page": "app/(main)/delivery/page.js",
+  "/(main)/products/page": "app/(main)/products/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/api/orders/route": "app/api/orders/route.js"
+}

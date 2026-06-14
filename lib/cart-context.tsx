@@ -9,6 +9,7 @@ interface CartContextType {
   removeItem: (productId: string) => void
   updateQuantity: (productId: string, quantity: number) => void
   clearCart: () => void
+  saveOrder: () => void
   total: number
   itemCount: number
 }
@@ -53,7 +54,31 @@ export function CartProvider({ children }: { children: ReactNode }) {
       return
     }
     setItems((current) => current.map((item) => (item.id === productId ? { ...item, quantity } : item)))
+
   }
+    const saveOrder = () => {
+  const existingOrders = JSON.parse(
+    localStorage.getItem("orders") || "[]"
+
+  )
+
+    const orderTotal = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  )
+
+  const newOrder = {
+    id: Date.now(),
+    items,
+    total: orderTotal,
+    createdAt: new Date().toISOString(),
+  }
+
+  localStorage.setItem(
+    "orders",
+    JSON.stringify([...existingOrders, newOrder])
+  )
+}
 
   const clearCart = () => {
     setItems([])
@@ -63,11 +88,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const itemCount = items.reduce((count, item) => count + item.quantity, 0)
 
   return (
-    <CartContext.Provider value={{ items, addItem, removeItem, updateQuantity, clearCart, total, itemCount }}>
+    <CartContext.Provider
+  value={{
+    items,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+    saveOrder,
+    total,
+    itemCount,
+  }}
+>
       {children}
     </CartContext.Provider>
   )
 }
+
+
+
+
+
 
 export function useCart() {
   const context = useContext(CartContext)

@@ -1,6 +1,6 @@
-[00:00:03.040] Server  LOG      ✓ Ready in 2.2s
-[00:00:22.054] Server  LOG      ○ Compiling /admin/dashboard ...
-[00:00:28.438] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:02.799] Server  LOG      ✓ Ready in 1994ms
+[00:00:06.277] Server  LOG      ○ Compiling /success ...
+[00:00:15.918] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -18,72 +18,7 @@ It can also happen if the client has a browser extension installed which messes 
         <ReplaySsrOnlyErrors>
         <DevRootHTTPAccessFallbackBoundary>
           <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/admin/das..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <Head headCacheNode={{lazyData:null, ...}}>
-                    <__next_viewport_boundary__>
-                    <Next.Metadata>
-                      <div
-                        hidden={true}
--                       bis_skin_checked="1"
-                      >
-                    ...
-                  <__next_root_layout_boundary__>
-                    <SegmentViewNode type="layout" pagePath="/Projects/...">
-                      <SegmentTrieNode>
-                      <link>
-                      <script>
-                      <script>
-                      <script>
-                      <RootLayout>
-                        <html lang="en">
-                          <body
-                            className="font-sans antialiased"
--                           __processed_912cda37-b4fc-4212-991d-288875185d63__="true"
--                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
--                           cz-shortcut-listen="true"
-                          >
-                            <OuterLayoutRouter>
-                            ...
-                              <ToastViewport ref={null} className="fixed top-...">
-                                <DismissableLayerBranch ref={{current:null}} role="region" aria-label="Notificati..." ...>
-                                  <Primitive.div role="region" aria-label="Notificati..." tabIndex={-1} style={{...}} ...>
-                                    <div
-                                      role="region"
-                                      aria-label="Notifications (F8)"
-                                      tabIndex={-1}
-                                      style={{pointerEvents:"none"}}
-                                      ref={function}
--                                     bis_skin_checked="1"
-                                    >
-                            ...
-                  ...
-
-[00:00:30.128] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:30.128] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin/dashboard","route":"/admin/dashboard"}
-[00:00:30.129] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1781431379398} /_vercel/insights/view
-[00:00:30.129] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1781431379491} /_vercel/insights/view
-[00:00:30.129] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/admin/dashboard color: rgb(120, 120, 120) color: inherit {"dp":"/admin/dashboard","o":"http://localhost:3000/admin/dashboard","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1781431379743} /_vercel/insights/view
-[00:00:56.330] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
-      <AppDevOverlayErrorBoundary globalError={[...]}>
-        <ReplaySsrOnlyErrors>
-        <DevRootHTTPAccessFallbackBoundary>
-          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
-            <HTTPAccessFallbackErrorBoundary pathname="/products" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <HTTPAccessFallbackErrorBoundary pathname="/success" notFound={<NotAllowedRootHTTPFallbackError>} ...>
               <RedirectBoundary>
                 <RedirectErrorBoundary router={{...}}>
                   <Head>
@@ -98,16 +33,12 @@ It can also happen if the client has a browser extension installed which messes 
                         <html lang="en">
                           <body
                             className="font-sans antialiased"
--                           __processed_2039818e-5f8e-43d1-85cd-92d362d971cd__="true"
+-                           __processed_02b4fd2d-c26a-415b-a7c2-4cf4c5ed65af__="true"
 -                           bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWll..."
 -                           cz-shortcut-listen="true"
                           >
                   ...
 
-[00:00:56.331] Browser WARN    Image with src "/vanilla-cake-with-flowers.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:00:56.451] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:56.452] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/products","route":"/products"}
-[00:00:56.452] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/products color: rgb(120, 120, 120) color: inherit {"dp":"/products","o":"http://localhost:3000/products","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1781431406424} /_vercel/insights/view
-[00:01:03.431] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/cart color: rgb(120, 120, 120) color: inherit {"dp":"/cart","o":"http://localhost:3000/cart","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1781431413392} /_vercel/insights/view
-[00:01:07.019] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/delivery color: rgb(120, 120, 120) color: inherit {"dp":"/delivery","o":"http://localhost:3000/delivery","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1781431416973} /_vercel/insights/view
+[00:00:15.919] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:15.919] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/success","route":"/success"}
+[00:00:15.919] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/success color: rgb(120, 120, 120) color: inherit {"dp":"/success","o":"http://localhost:3000/success","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1781435481091} /_vercel/insights/view

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/cxc/Desktop/Projects/Chocolate-website/app/api/orders/%5Bid%5D/route.ts"],"sourcesContent":["import { NextResponse } from \"next/server\"\n\nexport async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {\n  try {\n    const { id } = await params\n    const { status } = await request.json()\n\n    // In production, update the order in the database\n    return NextResponse.json({ success: true, id, status })\n  } catch (error) {\n    return NextResponse.json({ success: false, error: \"Failed to update order\" }, { status: 500 })\n  }\n}\n"],"names":[],"mappings":";;;;AAAA;;AAEO,eAAe,MAAM,OAAgB,EAAE,EAAE,MAAM,EAAuC;IAC3F,IAAI;QACF,MAAM,EAAE,EAAE,EAAE,GAAG,MAAM;QACrB,MAAM,EAAE,MAAM,EAAE,GAAG,MAAM,QAAQ,IAAI;QAErC,kDAAkD;QAClD,OAAO,oLAAY,CAAC,IAAI,CAAC;YAAE,SAAS;YAAM;YAAI;QAAO;IACvD,EAAE,OAAO,OAAO;QACd,OAAO,oLAAY,CAAC,IAAI,CAAC;YAAE,SAAS;YAAO,OAAO;QAAyB,GAAG;YAAE,QAAQ;QAAI;IAC9F;AACF"}}]
-}

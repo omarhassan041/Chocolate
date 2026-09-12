@@ -1,47 +1,36 @@
-<<<<<<< HEAD
-# E-commerce website build
+# Chocolate E-commerce Website
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A modern full-stack chocolate e-commerce website built with Next.js, React, TypeScript, and Tailwind CSS.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/omarhassan041s-projects/v0-e-commerce-website-build)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/pGQfDofIfAb)
-=======
-# Full-stack learning schedule
+## Features
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+- Modern responsive e-commerce interface
+- Product browsing
+- Product details
+- Shopping cart
+- Checkout flow
+- Order management
+- Contact page
+- Admin dashboard
+- Order API
+- Contact API
+- Responsive design for desktop and mobile
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/omarhassan041s-projects/v0-full-stack-learning-tracker)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/dZrrjBiblUl)
->>>>>>> f141cb985ccb0eedc739b4a1bf0212236a65a38f
+## Tech Stack
 
-## Overview
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- Radix UI
+- Lucide React
+- Recharts
+- Zod
+- Supabase
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Getting Started
 
-## Deployment
+Install dependencies:
 
-Your project is live at:
-
-<<<<<<< HEAD
-**[https://vercel.com/omarhassan041s-projects/v0-e-commerce-website-build](https://vercel.com/omarhassan041s-projects/v0-e-commerce-website-build)**
-=======
-**[https://vercel.com/omarhassan041s-projects/v0-full-stack-learning-tracker](https://vercel.com/omarhassan041s-projects/v0-full-stack-learning-tracker)**
->>>>>>> f141cb985ccb0eedc739b4a1bf0212236a65a38f
-
-## Build your app
-
-Continue building your app on:
-
-<<<<<<< HEAD
-**[https://v0.app/chat/pGQfDofIfAb](https://v0.app/chat/pGQfDofIfAb)**
-=======
-**[https://v0.app/chat/dZrrjBiblUl](https://v0.app/chat/dZrrjBiblUl)**
->>>>>>> f141cb985ccb0eedc739b4a1bf0212236a65a38f
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+```bash
+npm install

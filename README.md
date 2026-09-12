@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 # E-commerce website build
 
 *Automatically synced with your [v0.app](https://v0.app) deployments*
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/omarhassan041s-projects/v0-e-commerce-website-build)
 [![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/pGQfDofIfAb)
+=======
+# Full-stack learning schedule
+
+*Automatically synced with your [v0.app](https://v0.app) deployments*
+
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/omarhassan041s-projects/v0-full-stack-learning-tracker)
+[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/dZrrjBiblUl)
+>>>>>>> f141cb985ccb0eedc739b4a1bf0212236a65a38f
 
 ## Overview
 
@@ -14,13 +23,21 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 Your project is live at:
 
+<<<<<<< HEAD
 **[https://vercel.com/omarhassan041s-projects/v0-e-commerce-website-build](https://vercel.com/omarhassan041s-projects/v0-e-commerce-website-build)**
+=======
+**[https://vercel.com/omarhassan041s-projects/v0-full-stack-learning-tracker](https://vercel.com/omarhassan041s-projects/v0-full-stack-learning-tracker)**
+>>>>>>> f141cb985ccb0eedc739b4a1bf0212236a65a38f
 
 ## Build your app
 
 Continue building your app on:
 
+<<<<<<< HEAD
 **[https://v0.app/chat/pGQfDofIfAb](https://v0.app/chat/pGQfDofIfAb)**
+=======
+**[https://v0.app/chat/dZrrjBiblUl](https://v0.app/chat/dZrrjBiblUl)**
+>>>>>>> f141cb985ccb0eedc739b4a1bf0212236a65a38f
 
 ## How It Works
 

@@ -25,7 +25,7 @@ export function Header() {
             <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
             <span className="text-xl">🍫</span>
             </div>
-            <span className="font-serif text-xl font-bold text-foreground">Sweet Velvora</span>
+            <span className="font-serif text-xl font-bold text-foreground">MireChocolate</span>
           </Link>
 
           {/* Desktop Navigation */}

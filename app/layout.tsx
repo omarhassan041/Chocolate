@@ -10,7 +10,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 const _playfair = Playfair_Display({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Sweet Delights Bakery - Handcrafted Cakes & Pastries",
+  title: "MireChocolate",
   description:
     "Discover our collection of artisan cakes and pastries, baked fresh daily using the finest ingredients. Custom cakes for all occasions.",
   generator: "v0.app",
@@ -25,8 +25,6 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/icon.svg",
-        type: "image/svg+xml",
       },
     ],
     apple: "/apple-icon.png",

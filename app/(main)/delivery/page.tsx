@@ -100,16 +100,16 @@ export default function DeliveryPage() {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name</Label>
-                      <Input id="name" name="name" required placeholder="John Doe" />
+                      <Input id="name" name="name" required placeholder="Enter your name" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
-                      <Input id="email" name="email" type="email" required placeholder="john@example.com" />
+                      <Input id="email" name="email" type="email" required placeholder="Enter your email" />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" name="phone" type="tel" required placeholder="(555) 123-4567" />
+                    <Input id="phone" name="phone" type="tel" required placeholder="Enter your phone number" />
                   </div>
                 </CardContent>
               </Card>
@@ -168,16 +168,16 @@ export default function DeliveryPage() {
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="address">Street Address</Label>
-                      <Input id="address" name="address" required placeholder="123 Main Street" />
+                      <Input id="address" name="address" required placeholder="Enter your street address" />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="city">City</Label>
-                        <Input id="city" name="city" required placeholder="Sweet City" />
+                        <Input id="city" name="city" required placeholder="Enter your city" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="zipCode">ZIP Code</Label>
-                        <Input id="zipCode" name="zipCode" required placeholder="12345" />
+                        <Input id="zipCode" name="zipCode" required placeholder="Enter your ZIP code" />
                       </div>
                     </div>
                   </CardContent>
@@ -207,7 +207,7 @@ export default function DeliveryPage() {
                     <Textarea
                       id="notes"
                       name="notes"
-                      placeholder="Any special instructions for your order..."
+                      placeholder="Enter any  special instructions for your order..."
                       rows={3}
                     />
                   </div>

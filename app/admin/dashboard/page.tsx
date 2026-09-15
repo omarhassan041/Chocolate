@@ -192,6 +192,16 @@ export default function AdminDashboard() {
                 </Badge>
               )}
             </TabsTrigger>
+            <Link href="/admin/transactions">
+              <TabsTrigger value="transactions" className="gap-2">
+                <TrendingUp className="h-4 w-4" /> Transactions
+              </TabsTrigger>
+            </Link>
+            <Link href="/admin/payments">
+              <TabsTrigger value="payments" className="gap-2">
+                <DollarSign className="h-4 w-4" /> Payments
+              </TabsTrigger>
+            </Link>
           </TabsList>
 
           {/* ========================= */}

@@ -19,7 +19,17 @@ import {
   Clock,
   CheckCircle,
   XCircle,
+  FileText,
+  FileSpreadsheet,
+  FileDown,
 } from "lucide-react"
+import {
+  exportToExcel,
+  exportToCSV,
+  exportToPDF,
+  formatOrdersForExport,
+  formatMessagesForExport,
+} from "@/lib/export-utils"
 import type { Order, ContactMessage } from "@/lib/types"
 import { products } from "@/lib/data"
 
@@ -35,7 +45,6 @@ export default function AdminDashboard() {
       return
     }
 
-    // Fetch orders and messages
     fetch("/api/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data.orders || []))
@@ -59,7 +68,11 @@ export default function AdminDashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status }),
       })
-      setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status: status as Order["status"] } : o)))
+      setOrders((prev) =>
+        prev.map((o) =>
+          o.id === orderId ? { ...o, status: status as Order["status"] } : o
+        )
+      )
     } catch (error) {
       console.error("Failed to update order:", error)
     }
@@ -82,13 +95,23 @@ export default function AdminDashboard() {
             <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
               <LayoutDashboard className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-serif text-xl font-bold text-foreground">Admin Dashboard</span>
+            <span className="font-serif text-xl font-bold text-foreground">
+              Admin Dashboard
+            </span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-sm text-muted-foreground hover:text-primary">
+            <Link
+              href="/"
+              className="text-sm text-muted-foreground hover:text-primary"
+            >
               View Store
             </Link>
-            <Button variant="outline" size="sm" onClick={handleLogout} className="gap-2 bg-transparent">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleLogout}
+              className="gap-2 bg-transparent"
+            >
               <LogOut className="h-4 w-4" /> Logout
             </Button>
           </div>
@@ -105,7 +128,9 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Total Revenue</p>
-                <p className="text-2xl font-bold text-foreground">${totalRevenue.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-foreground">
+                  ${totalRevenue.toFixed(2)}
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -116,7 +141,9 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Total Orders</p>
-                <p className="text-2xl font-bold text-foreground">{orders.length}</p>
+                <p className="text-2xl font-bold text-foreground">
+                  {orders.length}
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -127,7 +154,9 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Pending Orders</p>
-                <p className="text-2xl font-bold text-foreground">{pendingOrders}</p>
+                <p className="text-2xl font-bold text-foreground">
+                  {pendingOrders}
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -138,7 +167,9 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">New Messages</p>
-                <p className="text-2xl font-bold text-foreground">{unreadMessages}</p>
+                <p className="text-2xl font-bold text-foreground">
+                  {unreadMessages}
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -163,27 +194,87 @@ export default function AdminDashboard() {
             </TabsTrigger>
           </TabsList>
 
-          {/* Orders Tab */}
+          {/* ========================= */}
+          {/* ORDERS TAB */}
+          {/* ========================= */}
           <TabsContent value="orders">
             <Card>
-              <CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between flex-wrap gap-2">
                 <CardTitle className="font-serif">Recent Orders</CardTitle>
+                {orders.length > 0 && (
+                  <div className="flex gap-2 flex-wrap">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="gap-1.5 bg-transparent"
+                      onClick={() =>
+                        exportToExcel(
+                          formatOrdersForExport(orders),
+                          "orders",
+                          "Orders"
+                        )
+                      }
+                    >
+                      <FileSpreadsheet className="h-4 w-4" />
+                      Excel
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="gap-1.5 bg-transparent"
+                      onClick={() =>
+                        exportToCSV(formatOrdersForExport(orders), "orders")
+                      }
+                    >
+                      <FileDown className="h-4 w-4" />
+                      CSV
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="gap-1.5 bg-transparent"
+                      onClick={() =>
+                        exportToPDF(
+                          formatOrdersForExport(orders),
+                          "orders",
+                          "Dhammaan Orders-ka MireChocolate"
+                        )
+                      }
+                    >
+                      <FileText className="h-4 w-4" />
+                      PDF
+                    </Button>
+                  </div>
+                )}
               </CardHeader>
               <CardContent>
                 {orders.length === 0 ? (
-                  <p className="text-center text-muted-foreground py-8">No orders yet.</p>
+                  <p className="text-center text-muted-foreground py-8">
+                    No orders yet.
+                  </p>
                 ) : (
                   <div className="space-y-4">
                     {orders.map((order) => (
-                      <div key={order.id} className="border border-border rounded-lg p-4">
+                      <div
+                        key={order.id}
+                        className="border border-border rounded-lg p-4"
+                      >
                         <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
                           <div>
-                            <p className="font-semibold text-foreground">{order.id}</p>
-                            <p className="text-sm text-muted-foreground">{order.customer.name}</p>
-                            <p className="text-sm text-muted-foreground">{order.customer.email}</p>
+                            <p className="font-semibold text-foreground">
+                              {order.id}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              {order.customer.name}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              {order.customer.email}
+                            </p>
                           </div>
                           <div className="text-right">
-                            <p className="font-bold text-primary">${order.total.toFixed(2)}</p>
+                            <p className="font-bold text-primary">
+                              ${order.total.toFixed(2)}
+                            </p>
                             <Badge
                               variant={
                                 order.status === "delivered"
@@ -199,8 +290,11 @@ export default function AdminDashboard() {
                         </div>
                         <div className="text-sm text-muted-foreground mb-3">
                           <p>
-                            {order.delivery.type === "delivery" ? "Delivery to:" : "Pickup"}{" "}
-                            {order.delivery.address && `${order.delivery.address}, ${order.delivery.city}`}
+                            {order.delivery.type === "delivery"
+                              ? "Delivery to:"
+                              : "Pickup"}{" "}
+                            {order.delivery.address &&
+                              `${order.delivery.address}, ${order.delivery.city}`}
                           </p>
                           <p>
                             Date: {order.delivery.date} at {order.delivery.time}
@@ -211,7 +305,9 @@ export default function AdminDashboard() {
                             size="sm"
                             variant="outline"
                             className="gap-1 bg-transparent"
-                            onClick={() => updateOrderStatus(order.id, "confirmed")}
+                            onClick={() =>
+                              updateOrderStatus(order.id, "confirmed")
+                            }
                             disabled={order.status !== "pending"}
                           >
                             <CheckCircle className="h-3 w-3" /> Confirm
@@ -220,7 +316,9 @@ export default function AdminDashboard() {
                             size="sm"
                             variant="outline"
                             className="gap-1 bg-transparent"
-                            onClick={() => updateOrderStatus(order.id, "preparing")}
+                            onClick={() =>
+                              updateOrderStatus(order.id, "preparing")
+                            }
                             disabled={order.status !== "confirmed"}
                           >
                             <TrendingUp className="h-3 w-3" /> Preparing
@@ -229,7 +327,9 @@ export default function AdminDashboard() {
                             size="sm"
                             variant="outline"
                             className="gap-1 bg-transparent"
-                            onClick={() => updateOrderStatus(order.id, "delivered")}
+                            onClick={() =>
+                              updateOrderStatus(order.id, "delivered")
+                            }
                             disabled={order.status !== "preparing"}
                           >
                             <Package className="h-3 w-3" /> Delivered
@@ -238,8 +338,13 @@ export default function AdminDashboard() {
                             size="sm"
                             variant="outline"
                             className="gap-1 text-destructive hover:text-destructive bg-transparent"
-                            onClick={() => updateOrderStatus(order.id, "cancelled")}
-                            disabled={order.status === "delivered" || order.status === "cancelled"}
+                            onClick={() =>
+                              updateOrderStatus(order.id, "cancelled")
+                            }
+                            disabled={
+                              order.status === "delivered" ||
+                              order.status === "cancelled"
+                            }
                           >
                             <XCircle className="h-3 w-3" /> Cancel
                           </Button>
@@ -252,7 +357,9 @@ export default function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          {/* Products Tab */}
+          {/* ========================= */}
+          {/* PRODUCTS TAB */}
+          {/* ========================= */}
           <TabsContent value="products">
             <Card>
               <CardHeader>
@@ -263,10 +370,18 @@ export default function AdminDashboard() {
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">Product</th>
-                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">Category</th>
-                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">Price</th>
-                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">Featured</th>
+                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">
+                          Product
+                        </th>
+                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">
+                          Category
+                        </th>
+                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">
+                          Price
+                        </th>
+                        <th className="text-left py-3 px-2 font-medium text-muted-foreground">
+                          Featured
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -275,13 +390,21 @@ export default function AdminDashboard() {
                           <td className="py-3 px-2">
                             <div className="flex items-center gap-3">
                               <div className="h-10 w-10 rounded bg-secondary" />
-                              <span className="font-medium text-foreground">{product.name}</span>
+                              <span className="font-medium text-foreground">
+                                {product.name}
+                              </span>
                             </div>
                           </td>
-                          <td className="py-3 px-2 capitalize text-muted-foreground">{product.category}</td>
-                          <td className="py-3 px-2 text-foreground">${product.price.toFixed(2)}</td>
+                          <td className="py-3 px-2 capitalize text-muted-foreground">
+                            {product.category}
+                          </td>
+                          <td className="py-3 px-2 text-foreground">
+                            ${product.price.toFixed(2)}
+                          </td>
                           <td className="py-3 px-2">
-                            {product.featured && <Badge variant="secondary">Featured</Badge>}
+                            {product.featured && (
+                              <Badge variant="secondary">Featured</Badge>
+                            )}
                           </td>
                         </tr>
                       ))}
@@ -292,33 +415,97 @@ export default function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          {/* Messages Tab */}
+          {/* ========================= */}
+          {/* MESSAGES TAB */}
+          {/* ========================= */}
           <TabsContent value="messages">
             <Card>
-              <CardHeader>
+              <CardHeader className="flex flex-row items-center justify-between flex-wrap gap-2">
                 <CardTitle className="font-serif">Contact Messages</CardTitle>
+                {messages.length > 0 && (
+                  <div className="flex gap-2 flex-wrap">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="gap-1.5 bg-transparent"
+                      onClick={() =>
+                        exportToExcel(
+                          formatMessagesForExport(messages),
+                          "messages",
+                          "Messages"
+                        )
+                      }
+                    >
+                      <FileSpreadsheet className="h-4 w-4" />
+                      Excel
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="gap-1.5 bg-transparent"
+                      onClick={() =>
+                        exportToCSV(formatMessagesForExport(messages), "messages")
+                      }
+                    >
+                      <FileDown className="h-4 w-4" />
+                      CSV
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="gap-1.5 bg-transparent"
+                      onClick={() =>
+                        exportToPDF(
+                          formatMessagesForExport(messages),
+                          "messages",
+                          "Dhammaan Fariimaha MireChocolate"
+                        )
+                      }
+                    >
+                      <FileText className="h-4 w-4" />
+                      PDF
+                    </Button>
+                  </div>
+                )}
               </CardHeader>
               <CardContent>
                 {messages.length === 0 ? (
-                  <p className="text-center text-muted-foreground py-8">No messages yet.</p>
+                  <p className="text-center text-muted-foreground py-8">
+                    No messages yet.
+                  </p>
                 ) : (
                   <div className="space-y-4">
                     {messages.map((message) => (
-                      <div key={message.id} className="border border-border rounded-lg p-4">
+                      <div
+                        key={message.id}
+                        className="border border-border rounded-lg p-4"
+                      >
                         <div className="flex items-start justify-between gap-4 mb-2">
                           <div>
-                            <p className="font-semibold text-foreground">{message.name}</p>
-                            <p className="text-sm text-muted-foreground">{message.email}</p>
+                            <p className="font-semibold text-foreground">
+                              {message.name}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              {message.email}
+                            </p>
                           </div>
                           <div className="flex items-center gap-2">
-                            {!message.read && <Badge variant="destructive">New</Badge>}
+                            {!message.read && (
+                              <Badge variant="destructive">New</Badge>
+                            )}
                             <span className="text-xs text-muted-foreground">
-                              {new Date(message.createdAt).toLocaleDateString()}
+                              {new Date(
+                                message.createdAt
+                              ).toLocaleDateString()}
                             </span>
                           </div>
                         </div>
-                        <p className="font-medium text-foreground mb-1">{message.subject}</p>
-                        <p className="text-sm text-muted-foreground">{message.message}</p>
+                        <p className="font-medium text-foreground mb-1">
+                          {message.subject}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {message.message}
+                        </p>
                       </div>
                     ))}
                   </div>

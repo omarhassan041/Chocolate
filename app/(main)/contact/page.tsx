@@ -44,9 +44,9 @@ export default function ContactPage() {
   }
 
   const contactInfo = [
-    { icon: MapPin, title: "Address", content: "123 Bakery Street, Sweet City, SC 12345" },
-    { icon: Phone, title: "Phone", content: "(555) 123-4567" },
-    { icon: Mail, title: "Email", content: "hello@sweetdelights.com" },
+    { icon: MapPin, title: "Address", content: "123 Bakery Street, Sweet City, SC 1601" },
+    { icon: Phone, title: "Phone", content: "(252) xxxxxx" },
+    { icon: Mail, title: "Email", content: "hello@mirechocolate.com" },
     { icon: Clock, title: "Hours", content: "Mon-Fri: 7AM-8PM, Sat: 8AM-9PM, Sun: 9AM-6PM" },
   ]
 
@@ -119,11 +119,11 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name">Full Name</Label>
-                        <Input id="name" name="name" required placeholder="John Doe" />
+                        <Input id="name" name="name" required placeholder="Enter your full name" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" name="email" type="email" required placeholder="john@example.com" />
+                        <Input id="email" name="email" type="email" required placeholder="Enter your email" />
                       </div>
                     </div>
                     <div className="space-y-2">

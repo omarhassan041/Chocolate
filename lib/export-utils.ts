@@ -244,3 +244,144 @@ export function formatMessagesForExport(messages: any[]) {
       : "",
   }));
 }
+
+// ========================================
+// 4. FORMAT TRANSACTIONS FOR EXPORT
+// ========================================
+export function formatTransactionsForExport(transactions: any[]) {
+  return transactions.map((t, index) => ({
+    "#": index + 1,
+    "Transaction ID": t.id,
+    "Service Type": t.serviceType || t.service_type,
+    Channel: t.channel,
+    Status: t.status,
+    Reference: t.reference,
+    "Amount ($)": t.amount,
+    "Fee ($)": t.fee || 0,
+    "Balance ($)": t.balance || 0,
+    "Customer Name": t.customerName || t.customer_name || "",
+    "Customer Number": t.customerNumber || t.customer_number || "",
+    "Customer Email": t.customerEmail || t.customer_email || "",
+    "Payment Method": t.paymentMethod || t.payment_method || "",
+    Notes: t.notes || "",
+    "Created At": t.createdAt || t.created_at
+      ? new Date(t.createdAt || t.created_at).toLocaleString("so-SO")
+      : "",
+  }))
+}
+
+// ========================================
+// 5. EXPORT TRANSACTIONS TO EXCEL
+// ========================================
+export function exportTransactionsToExcel(
+  transactions: any[],
+  filename = "transactions"
+) {
+  if (!transactions || transactions.length === 0) {
+    alert("Ma jiro xog la dhoofin karo")
+    return
+  }
+
+  const data = formatTransactionsForExport(transactions)
+
+  const worksheet = XLSX.utils.json_to_sheet(data)
+
+  // Auto-fit columns
+  const colWidths = Object.keys(data[0]).map((key) => {
+    const maxLength = Math.max(
+      key.length,
+      ...data.map((row) => String(row[key] || "").length)
+    )
+    return { wch: Math.min(maxLength + 2, 50) }
+  })
+  worksheet["!cols"] = colWidths
+
+  const workbook = XLSX.utils.book_new()
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Transactions")
+
+  const date = new Date().toISOString().split("T")[0]
+  XLSX.writeFile(workbook, `${filename}-${date}.xlsx`)
+}
+
+// ========================================
+// 6. EXPORT TRANSACTIONS TO CSV
+// ========================================
+export function exportTransactionsToCSV(
+  transactions: any[],
+  filename = "transactions"
+) {
+  if (!transactions || transactions.length === 0) {
+    alert("Ma jiro xog la dhoofin karo")
+    return
+  }
+
+  const data = formatTransactionsForExport(transactions)
+  exportToCSV(data, filename)
+}
+
+// ========================================
+// 7. EXPORT TRANSACTIONS TO PDF
+// ========================================
+export function exportTransactionsToPDF(
+  transactions: any[],
+  filename = "transactions"
+) {
+  if (!transactions || transactions.length === 0) {
+    alert("Ma jiro xog la dhoofin karo")
+    return
+  }
+
+  const data = formatTransactionsForExport(transactions)
+
+  const doc = new jsPDF({ orientation: "landscape" })
+
+  // Header
+  doc.setFillColor(62, 39, 35)
+  doc.rect(0, 0, 297, 25, "F")
+
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(18)
+  doc.setFont("helvetica", "bold")
+  doc.text("MireChocolate — Recent Transactions", 14, 12)
+
+  doc.setFontSize(9)
+  doc.setFont("helvetica", "normal")
+  doc.text(
+    "Transaction management • Search, filter and review recent activity",
+    14,
+    18
+  )
+
+  doc.setFontSize(8)
+  doc.text(
+    `La sameeyay: ${new Date().toLocaleString("so-SO")}`,
+    283,
+    12,
+    { align: "right" }
+  )
+  doc.text(`Wadarta: ${data.length}`, 283, 18, { align: "right" })
+
+  // Table
+  const columns = Object.keys(data[0]).map((key) => ({
+    header: key,
+    dataKey: key,
+  }))
+
+  autoTable(doc, {
+    head: [columns.map((c) => c.header)],
+    body: data.map((row) => columns.map((c) => String(row[c.dataKey] ?? ""))),
+    startY: 32,
+    styles: { fontSize: 7, cellPadding: 2 },
+    headStyles: {
+      fillColor: [62, 39, 35],
+      textColor: [255, 255, 255],
+      fontStyle: "bold",
+      fontSize: 8,
+    },
+    alternateRowStyles: { fillColor: [250, 240, 235] },
+    margin: { left: 8, right: 8 },
+  })
+
+  const date = new Date().toISOString().split("T")[0]
+  doc.save(`${filename}-${date}.pdf`)
+}

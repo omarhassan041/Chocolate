@@ -40,6 +40,7 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`font-sans antialiased`}
       >
+      
         {children}
         <Toaster />
         <Analytics />

@@ -1,27 +1,60 @@
 import { NextResponse } from "next/server"
+import { createClient } from "@/lib/supabase/server"
 
-// In-memory storage for messages (in production, use a database)
-const messages: any[] = []
-
-export async function POST(request: Request) {
+export async function GET() {
   try {
-    const messageData = await request.json()
+    const supabase = await createClient()
+    const { data, error } = await supabase
+      .from("contacts")
+      .select("*")
+      .order("created_at", { ascending: false })
 
-    const message = {
-      id: `MSG-${Date.now()}`,
-      ...messageData,
-      createdAt: new Date().toISOString(),
-      read: false,
-    }
+    if (error) throw error
 
-    messages.push(message)
+    const messages = (data || []).map((m) => ({
+      id: m.id,
+      name: m.name,
+      email: m.email,
+      subject: m.subject,
+      message: m.message,
+      read: m.read,
+      createdAt: m.created_at,
+    }))
 
-    return NextResponse.json({ success: true, message }, { status: 201 })
+    return NextResponse.json({ messages })
   } catch (error) {
-    return NextResponse.json({ success: false, error: "Failed to send message" }, { status: 500 })
+    console.error("Contact GET error:", error)
+    return NextResponse.json({ messages: [] }, { status: 500 })
   }
 }
 
-export async function GET() {
-  return NextResponse.json({ messages })
+export async function POST(request: Request) {
+  try {
+    const body = await request.json()
+    const supabase = await createClient()
+
+    const { data, error } = await supabase
+      .from("contacts")
+      .insert([
+        {
+          name: body.name,
+          email: body.email,
+          subject: body.subject || "No subject",
+          message: body.message,
+          read: false,
+        },
+      ])
+      .select()
+      .single()
+
+    if (error) throw error
+
+    return NextResponse.json({ success: true, message: data }, { status: 201 })
+  } catch (error) {
+    console.error("Contact POST error:", error)
+    return NextResponse.json(
+      { success: false, error: "Failed to send message" },
+      { status: 500 }
+    )
+  }
 }

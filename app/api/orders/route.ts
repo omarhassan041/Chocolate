@@ -1,27 +1,70 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
 
-// In-memory storage for orders (in production, use a database)
-const orders: any[] = []
-
-export async function POST(request: Request) {
+export async function GET() {
   try {
-    const orderData = await request.json()
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("orders")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-    const order = {
-      id: `ORD-${Date.now()}`,
-      ...orderData,
-      status: "pending",
-      createdAt: new Date().toISOString(),
-    }
+    if (error) throw error;
 
-    orders.push(order)
+    // Transform to match frontend type
+    const orders = (data || []).map((o) => ({
+      id: o.id,
+      items: o.items,
+      customer: {
+        name: o.customer_name,
+        email: o.customer_email,
+        phone: o.customer_phone,
+      },
+      delivery: o.delivery,
+      total: Number(o.total),
+      status: o.status,
+      createdAt: o.created_at,
+    }));
 
-    return NextResponse.json({ success: true, order }, { status: 201 })
+    return NextResponse.json({ orders });
   } catch (error) {
-    return NextResponse.json({ success: false, error: "Failed to create order" }, { status: 500 })
+    console.error("Orders GET error:", error);
+    return NextResponse.json({ orders: [] }, { status: 500 });
   }
 }
 
-export async function GET() {
-  return NextResponse.json({ orders })
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const supabase = await createClient();
+
+    const orderId = `ORD-${Date.now()}`;
+
+    const { data, error } = await supabase
+      .from("orders")
+      .insert([
+        {
+          id: orderId,
+          customer_name: body.customer?.name,
+          customer_email: body.customer?.email,
+          customer_phone: body.customer?.phone,
+          items: body.items,
+          delivery: body.delivery,
+          total: body.total,
+          status: "pending",
+        },
+      ])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return NextResponse.json({ success: true, order: data }, { status: 201 });
+  } catch (error) {
+    console.error("Orders POST error:", error);
+    return NextResponse.json(
+      { success: false, error: "Failed to create order" },
+      { status: 500 },
+    );
+  }
 }

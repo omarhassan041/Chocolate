@@ -19,6 +19,8 @@ export default function CheckoutPage() {
     name: "",
     email: "",
     phone: "",
+    pin: "",
+    pinConfirm: "",
     address: "",
     city: "",
     notes: "",
@@ -45,6 +47,17 @@ export default function CheckoutPage() {
       return
     }
 
+    // PIN validation
+    if (!form.pin || form.pin.length < 4 || form.pin.length > 6) {
+      setError("PIN-ku waa inuu ahaadaa 4-6 nambar")
+      return
+    }
+
+    if (form.pin !== form.pinConfirm) {
+      setError("PIN-ka labada jeer waa inay isku mid ahaadaan")
+      return
+    }
+
     if (form.deliveryType === "delivery" && !form.address) {
       setError("Cinwaanka waa muhiim haddii aad dooratay gaarsiinta")
       return
@@ -61,6 +74,7 @@ export default function CheckoutPage() {
             name: form.name,
             email: form.email,
             phone: form.phone,
+            pin: form.pin,
           },
           items,
           delivery: {
@@ -161,6 +175,7 @@ export default function CheckoutPage() {
                     />
                   </div>
                 </div>
+
                 <div>
                   <Label htmlFor="email">Email (ikhtiyaari)</Label>
                   <Input
@@ -170,6 +185,49 @@ export default function CheckoutPage() {
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="your@email.com"
                   />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="pin">PIN-kaaga *</Label>
+                    <Input
+                      id="pin"
+                      type="password"
+                      inputMode="numeric"
+                      maxLength={6}
+                      value={form.pin}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, "")
+                        setForm({ ...form, pin: val })
+                      }}
+                      placeholder="4-6 nambar"
+                      required
+                      className="font-mono tracking-widest text-center text-lg"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      PIN-kaaga EVC / Zaad / eDahab / Sahal
+                    </p>
+                  </div>
+                  <div>
+                    <Label htmlFor="pinConfirm">Xaqiiji PIN-ka *</Label>
+                    <Input
+                      id="pinConfirm"
+                      type="password"
+                      inputMode="numeric"
+                      maxLength={6}
+                      value={form.pinConfirm}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, "")
+                        setForm({ ...form, pinConfirm: val })
+                      }}
+                      placeholder="Ku celi PIN-ka"
+                      required
+                      className="font-mono tracking-widest text-center text-lg"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Waa inuu la mid noqdaa PIN-ka kowaad
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>

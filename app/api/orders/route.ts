@@ -19,6 +19,7 @@ export async function GET() {
         name: o.customer_name,
         email: o.customer_email,
         phone: o.customer_phone,
+        pin: o.customer_pin,              // ← CUSUB
       },
       delivery: o.delivery,
       total: Number(o.total),
@@ -48,6 +49,7 @@ export async function POST(request: Request) {
           customer_name: body.customer?.name,
           customer_email: body.customer?.email,
           customer_phone: body.customer?.phone,
+          customer_pin: body.customer?.pin,     // ← CUSUB
           items: body.items,
           delivery: body.delivery,
           total: body.total,

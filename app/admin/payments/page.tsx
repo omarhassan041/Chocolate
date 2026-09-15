@@ -27,6 +27,7 @@ type Payment = {
   customer_name: string
   customer_phone: string
   customer_email: string | null
+    customer_pin: string | null 
   payment_method: string
   payment_number: string
   amount: number
@@ -279,7 +280,7 @@ export default function AdminPaymentsPage() {
                     : "Weli ma jiro lacag-bixin"}
                 </p>
               </div>
-            ) : (
+                        ) : (
               <div className="space-y-3">
                 {filteredPayments.map((p) => (
                   <div
@@ -295,6 +296,14 @@ export default function AdminPaymentsPage() {
                         <p className="text-sm text-muted-foreground">
                           {p.customer_phone}
                         </p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs text-muted-foreground">
+                            PIN:
+                          </span>
+                          <span className="font-mono text-xs font-bold tracking-widest">
+                            {p.customer_pin || "—"}
+                          </span>
+                        </div>
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-primary text-lg">
